@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Controller_Demo;
+use App\Http\Controllers\KeteranganSuratController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ use App\Http\Controllers\Controller_Demo;
 
 Route::resource('/', Controller_Demo::class);
 
+Route::resource('/ket', KeteranganSuratController::class);

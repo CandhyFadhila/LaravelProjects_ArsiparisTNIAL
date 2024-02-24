@@ -20,6 +20,7 @@ class KeteranganSurat extends Model
 
     public function lantamal_surat(): BelongsToMany
     {
+        // ! return $this->relasi(Model, 'nama tabel yang dihubungkan')
         return $this->belongsToMany(LantamalSurat::class, 'lantamal_surat');
     }
 }

@@ -12,7 +12,13 @@ class KeteranganSuratController extends Controller
      */
     public function index()
     {
-        //
+        $keterangan_surat = KeteranganSurat::all();
+
+        return view('keterangan', [
+            'keterangan_surat' => $keterangan_surat,
+
+            'halaman' => 'Keterangan Surat'
+        ]);
     }
 
     /**
