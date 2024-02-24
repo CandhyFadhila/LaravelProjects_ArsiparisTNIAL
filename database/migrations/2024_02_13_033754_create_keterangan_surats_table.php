@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lantamal_surat', function (Blueprint $table) {
+        Schema::create('keterangan_surat', function (Blueprint $table) {
             // $table->id();
             $table->uuid('id')->primary();
-            $table->string('asal_surat');
-            $table->string('tanggal_surat');
-            $table->string('nomor_surat');
-            $table->text('perihal_surat');
-            $table->foreignUuid('keterangan_surat_id')->constrained('keterangan_surat');
+            $table->string('nama');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lantamal_surat');
+        Schema::dropIfExists('keterangan_surat');
     }
 };

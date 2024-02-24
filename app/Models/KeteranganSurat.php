@@ -2,24 +2,24 @@
 
 namespace App\Models;
 
-use App\Models\LantamalSurat;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class KeteranganSurat extends Model
 {
     use HasFactory;
+    use HasUuids;
 
     public $table = 'keterangan_surat';
 
-    protected $guarded = ['id'];
+    protected $primaryKey = 'id';
 
-    public function lantamal()
+    protected $fillable = ['nama_keterangan_surat'];
+
+    public function lantamal_surat(): BelongsToMany
     {
-        return $this->hasMany(LantamalSurat::class);
+        return $this->belongsToMany(LantamalSurat::class, 'lantamal_surat');
     }
-
-    // public function telegram(){
-    //     return $this->hasMany(Telegram::class);
-    // }
 }
