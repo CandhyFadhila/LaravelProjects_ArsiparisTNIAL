@@ -1,10 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\Controller_Demo;
-use App\Http\Controllers\KeteranganSuratController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +18,15 @@ use App\Http\Controllers\KeteranganSuratController;
 //     return view('welcome');
 // });
 
-Route::resource('/', Controller_Demo::class);
+// Route::resource('/', Controller_Demo::class);
 
-Route::resource('/ket', KeteranganSuratController::class);
+// TODO | AUTH SECTION
+Route::controller(AuthController::class)->group(function () {
+	Route::get('/', 'signin');
+
+	Route::get('/signup', 'signup');
+});
+
+Route::resource('/dashboard', DashboardController::class);
+
+// Route::resource('/ket', KeteranganSuratController::class);

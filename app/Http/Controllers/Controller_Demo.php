@@ -14,7 +14,7 @@ class Controller_Demo extends Controller
     {
         $data_surat = Surat::all();
 
-        return view('demo',[
+        return view('demo', [
             "surat" => $data_surat
         ]);
     }
