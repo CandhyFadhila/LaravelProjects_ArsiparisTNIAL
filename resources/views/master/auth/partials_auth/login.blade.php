@@ -6,30 +6,63 @@
 		<div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
 			<div class="card card-plain mt-8">
 				<div class="card-header pb-0 text-left bg-transparent">
-					<h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
-					<p class="mb-0">Enter your email and password to sign in</p>
+					<h3 class="font-weight-bolder text-info text-gradient">Staff MinPers</h3>
+					<p class="mb-0">Masukkan email dan password anda sebelum login</p>
 				</div>
 				<div class="card-body">
-					<form role="form">
+					<form role="form" method="#">
+						@csrf
+
 						<label>Email</label>
 						<div class="mb-3">
 							<input type="email" class="form-control" placeholder="Email" aria-label="Email"
 								aria-describedby="email-addon">
+
+							@error('email')
+							<small class="text-danger fst-italic">
+								{{ $message }}
+							</small>
+							@enderror
 						</div>
+
 						<label>Password</label>
 						<div class="mb-3">
-							<input type="email" class="form-control" placeholder="Password" aria-label="Password"
-								aria-describedby="password-addon">
+							<input type="password" id="password" class="form-control" placeholder="Password"
+								aria-label="Password" aria-describedby="password-addon">
+
+							@error('password')
+							<small class="text-danger fst-italic">
+								{{ $message }}
+							</small>
+							@enderror
 						</div>
+
+						<div class="d-flex justify-content-between">
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input" id="formCheckbox">
+								<label for="formCheckbox" class="form-check-label text-secondary">
+									<small class="text-bold">Lihat
+										Password</small>
+								</label>
+							</div>
+							<div class="forgot">
+								<small>
+
+									<a href="{{ url('/forgot-password') }}">Lupa Password?</a>
+								</small>
+							</div>
+						</div>
+
 						<div class="text-center">
-							<button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
+							<button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Login</button>
 						</div>
 					</form>
 				</div>
 				<div class="card-footer text-center pt-0 px-lg-2 px-1">
 					<p class="mb-4 text-sm mx-auto">
-						Don't have an account?
-						<a href="{{ url('/signup') }}" class="text-info text-gradient font-weight-bold">Sign up</a>
+						Belum punya akun?
+						<a href="{{ url('/signup') }}" class="text-info text-gradient font-weight-bold">Buat akun
+							disini</a>
 					</p>
 				</div>
 			</div>
@@ -43,4 +76,21 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('any_script')
+<script>
+	$(document).ready(function() {
+		let password = document.getElementById('password');
+		let formCheckbox = document.getElementById('formCheckbox');
+
+		formCheckbox.onclick = function(){
+			if (formCheckbox.checked){
+				password.type = 'text';
+			} else {
+				password.type = 'password';
+			}
+		}
+	});
+</script>
 @endsection
