@@ -10,13 +10,13 @@
 					<p class="mb-0">Masukkan email dan password anda sebelum login</p>
 				</div>
 				<div class="card-body">
-					<form role="form" method="#">
+					<form role="form" action="{{ route('signin.code') }}" method="POST">
 						@csrf
 
 						<label>Email</label>
 						<div class="mb-3">
-							<input type="email" class="form-control" placeholder="Email" aria-label="Email"
-								aria-describedby="email-addon">
+							<input type="email" id="email" name="email" placeholder="Email"
+								aria-label="Email" aria-describedby="email-addon" value="{{ Session::get('email') }}" class="form-control @error('email') is-invalid @enderror @if(old('email') && !($errors->has('email'))) is-valid @endif">
 
 							@error('email')
 							<small class="text-danger fst-italic">
@@ -27,8 +27,8 @@
 
 						<label>Password</label>
 						<div class="mb-3">
-							<input type="password" id="password" class="form-control" placeholder="Password"
-								aria-label="Password" aria-describedby="password-addon">
+							<input type="password" id="password" name="password"
+								placeholder="Password" aria-label="Password"  aria-describedby="password-addon" value="{{ Session::get('password') }}" class="form-control @error('password') is-invalid @enderror @if(old('password') && !($errors->has('password'))) is-valid @endif">
 
 							@error('password')
 							<small class="text-danger fst-italic">
@@ -92,5 +92,72 @@
 			}
 		}
 	});
+</script>
+@endsection
+
+@section('auth_section')
+{{-- TODO | SW2 + TOASTR --}}
+<script>
+	$(document).ready(function() {
+			// LOGOUT TOASTR
+			@if (Session::has('success'))
+				(async function() {
+					const Toast = Swal.mixin({
+						toast: true,
+						position: 'top-right',
+						iconColor: '#FFC436',
+						customClass: {
+							popup: 'colored-toast'
+						},
+						showConfirmButton: false,
+						timer: 4000,
+						timerProgressBar: true
+					});
+
+					await Toast.fire({
+						icon: 'success',
+						title: "{{ Session::get('success') }}"
+					});
+				})();
+			@endif
+
+			/* SUCCESS REGISTER */
+			@if (Session::has('success_register'))
+				Swal.fire({
+					icon: 'success',
+					title: '<strong>Registrasi Berhasil!</strong>',
+					html: 'Terimakasih telah melakukan registrasi akun, Silahkan <b>login</b> untuk melanjutkan.',
+					showConfirmButton: true,
+					confirmButtonColor: '#0174BE',
+					focusConfirm: false,
+					confirmButtonText: 'Oke!'
+				});
+			@endif
+
+			// PASSWORD NOT MATCH
+			@if (Session::has('error_password'))
+				Swal.fire({
+					icon: 'error',
+					title: '<strong>Login failed</strong>',
+					html: 'The email or password you entered is <b>incorrect</b>. Please <b>double-check</b> and <b>try again</b>.',
+					showConfirmButton: false,
+					timer: 4000,
+					timerProgressBar: true
+				});
+			@endif
+
+			// AFTER RESET PASSWORD UPDATE
+			@if (Session::has('status_password_reset'))
+				Swal.fire({
+					icon: 'success',
+					title: '<strong>New Password Updated</strong>',
+					html: 'Your password has been <b>successfully updated</b>. Please use your new password to log in to your account.',
+					showConfirmButton: true,
+					confirmButtonColor: '#0174BE',
+					focusConfirm: false,
+					confirmButtonText: 'Yes, confirm!'
+				});
+			@endif
+		});	
 </script>
 @endsection

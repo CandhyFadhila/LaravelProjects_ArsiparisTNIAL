@@ -10,17 +10,18 @@
 					<p class="mb-0">Silahkan isikan data berikut untuk memembuat akun baru</p>
 				</div>
 				<div class="card-body">
-					<form role="form" method="#">
+					<form role="form" action="{{ route('signup.code') }}" method="POST">
 						@csrf
 
 						<label>Nama Lengkap</label>
 						<div class="mb-3">
-							<input type="text" class="form-control" placeholder="Nama Lengkap" aria-label="Nama"
-								aria-describedby="nama-addon">
+							<input type="text" id="name" name="name" placeholder="Nama Lengkap" aria-label="Name"
+								aria-describedby="nama-addon" value="{{ Session::get('name') }}"
+								class="form-control @error('name') is-invalid @enderror @if(old('name') && !($errors->has('name'))) is-valid @endif">
 							{{-- <div id="nama-addon" class="form-text">We'll never share your email with anyone else.
 							</div> --}}
 
-							@error('nama')
+							@error('name')
 							<small class="text-danger">
 								{{ $message }}
 							</small>
@@ -29,8 +30,9 @@
 
 						<label>Email</label>
 						<div class="mb-3">
-							<input type="email" class="form-control" placeholder="Email" aria-label="Email"
-								aria-describedby="email-addon">
+							<input type="email" id="email" name="email" placeholder="Email" aria-label="Email"
+								aria-describedby="email-addon" value="{{ Session::get('email') }}"
+								class="form-control @error('email') is-invalid @enderror @if(old('email') && !($errors->has('email'))) is-valid @endif">
 
 							@error('email')
 							<small class="text-danger fst-italic">
@@ -52,8 +54,10 @@
 
 						<label>Password</label>
 						<div class="mb-3">
-							<input type="password" id="password" class="form-control" placeholder="Password"
-								aria-label="Password" aria-describedby="password-addon">
+							<input type="password" id="password" name="password" placeholder="Password"
+								aria-label="Password" aria-describedby="password-addon"
+								value="{{ Session::get('password') }}"
+								class="form-control @error('password') is-invalid @enderror @if(old('password') && !($errors->has('password'))) is-valid @endif">
 
 							@error('password')
 							<small class="text-danger fst-italic">
@@ -116,11 +120,11 @@
 </script>
 @endsection
 
-@section('select2')
+@section('auth_section')
+{{-- TODO | SW2 + TOASTR --}}
 <script>
-	$(document).ready(function() {
-		$('.select2-register').select2();
-
-	});
+	// $(document).ready(function() {
+			
+	// });
 </script>
 @endsection

@@ -174,11 +174,9 @@
 
   @yield('select2')
 
-  @yield('sw2_toastr')
-
   @yield('pikaday')
 
-  @yield('notification_register')
+  @yield('auth_section')
 
 </body>
 

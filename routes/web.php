@@ -22,11 +22,20 @@ use Illuminate\Support\Facades\Route;
 
 // TODO | AUTH SECTION
 Route::controller(AuthController::class)->group(function () {
+	/* LOGIN */
 	Route::get('/', 'signin');
+	Route::post('/login', 'signin_code')->name('signin.code');
+	/* END LOGIN */
 
+	/* REGISTRATION */
 	Route::get('/signup', 'signup');
+	Route::post('/registration', 'signup_code')->name('signup.code');
+	/* END REGISTRATION */
+
+	// TODO | LOGOUT
+	Route::get('/logout', 'logout');
 });
 
-Route::resource('/dashboard', DashboardController::class);
+Route::get('dashboard', [DashboardController::class,'index']);
 
 // Route::resource('/ket', KeteranganSuratController::class);
