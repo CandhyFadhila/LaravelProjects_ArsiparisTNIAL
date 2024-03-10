@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthPassword_Controller;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -32,10 +33,19 @@ Route::controller(AuthController::class)->group(function () {
 	Route::post('/registration', 'signup_code')->name('signup.code');
 	/* END REGISTRATION */
 
+	
 	// TODO | LOGOUT
 	Route::get('/logout', 'logout');
 });
 
+// TODO | FORGOT PASSWORD SECTION
+Route::controller(AuthPassword_Controller::class,)->group(function (){
+	/* FORGOT PASSWORD */
+	Route::get('/forgot-password', 'index');
+	/* ENDFORGOT PASSWORD */
+});
+
+// Route::get('check', [DashboardController::class,'check']);
 Route::get('dashboard', [DashboardController::class,'index']);
 
 // Route::resource('/ket', KeteranganSuratController::class);

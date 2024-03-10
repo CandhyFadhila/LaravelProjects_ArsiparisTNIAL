@@ -61,7 +61,7 @@
           class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
           <div class="container-fluid pe-0">
             <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3">
-              Lanal Semarang
+              Pangkalan TNI AL Kota Semarang
             </a>
             <div class="collapse navbar-collapse" id="navigation">
               <ul class="navbar-nav mx-auto ms-xl-auto me-xl-7">
@@ -73,8 +73,8 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center me-2 active" aria-current="page"
-                    href="https://www.instagram.com/lanal_semarang/" target="_blank">
+                  <a class="nav-link me-2" aria-current="page" href="https://www.instagram.com/lanal_semarang/"
+                    target="_blank">
                     <i class="fa fa-instagram opacity-6 text-dark me-1"></i>
                     Instagram
                   </a>
@@ -114,10 +114,7 @@
   </main>
   <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
   <footer class="footer py-5">
-
     <div class="container">
-      <div class="row">
-      </div>
       <div class="row">
         <div class="col-8 mx-auto text-center mt-1">
           <p class="mb-0 text-secondary">
@@ -128,7 +125,6 @@
         </div>
       </div>
     </div>
-
   </footer>
   <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
   <!--   Core JS Files   -->
@@ -147,8 +143,9 @@
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
+  
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+  <script src="{{ asset('master/dashboard/template/assets/js/soft-ui-dashboard.min.js?v=1.0.7') }}"></script>
 
   {{-- ! JQUERY --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"

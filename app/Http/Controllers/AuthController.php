@@ -47,10 +47,10 @@ class AuthController extends Controller
         if (Auth::attempt($info_login)) {
             Debugbar::info('Login successful');
             // return redirect('dashboard')->with('success', 'Selamat Datang, "' . Auth::user()->name . '" di Lanal Semarang | StaffMin');
-            return redirect('/');
+            return redirect('dashboard')->with('success_login', 'login_success');
         } else {
             Debugbar::warning('Password is incorrect');
-            return redirect('/')->with('error_password', 'error_password');
+            return redirect('/')->with('error_auth', 'login_error');
         }
     }
 
@@ -90,7 +90,14 @@ class AuthController extends Controller
 
         if (Auth::attempt($info_login)) {
             // Debugbar::info($info_login);
-            return redirect('/')->with('success_register', 'message_success');
+            return redirect('/')->with('success_register', 'register_success');
         }
+    }
+
+    public function logout()
+    {
+        // dd('sudah logout');
+        Auth::logout();
+        return redirect('/')->with('success_logout', 'Anda telah berhasil melakukan logout');
     }
 }

@@ -15,8 +15,9 @@
 
 						<label>Email</label>
 						<div class="mb-3">
-							<input type="email" id="email" name="email" placeholder="Email"
-								aria-label="Email" aria-describedby="email-addon" value="{{ Session::get('email') }}" class="form-control @error('email') is-invalid @enderror @if(old('email') && !($errors->has('email'))) is-valid @endif">
+							<input type="email" id="email" name="email" placeholder="Email" aria-label="Email"
+								aria-describedby="email-addon" value="{{ Session::get('email') }}"
+								class="form-control @error('email') is-invalid @enderror @if(old('email') && !($errors->has('email'))) is-valid @endif">
 
 							@error('email')
 							<small class="text-danger fst-italic">
@@ -27,8 +28,10 @@
 
 						<label>Password</label>
 						<div class="mb-3">
-							<input type="password" id="password" name="password"
-								placeholder="Password" aria-label="Password"  aria-describedby="password-addon" value="{{ Session::get('password') }}" class="form-control @error('password') is-invalid @enderror @if(old('password') && !($errors->has('password'))) is-valid @endif">
+							<input type="password" id="password" name="password" placeholder="Password"
+								aria-label="Password" aria-describedby="password-addon"
+								value="{{ Session::get('password') }}"
+								class="form-control @error('password') is-invalid @enderror @if(old('password') && !($errors->has('password'))) is-valid @endif">
 
 							@error('password')
 							<small class="text-danger fst-italic">
@@ -40,15 +43,13 @@
 						<div class="d-flex justify-content-between">
 							<div class="form-check">
 								<input type="checkbox" class="form-check-input" id="formCheckbox">
-								<label for="formCheckbox" class="form-check-label text-secondary">
-									<small class="text-bold">Lihat
-										Password</small>
+								<label class="form-check-label" for="formCheckbox">
+									Lihat Password
 								</label>
 							</div>
 							<div class="forgot">
 								<small>
-
-									<a href="{{ url('/forgot-password') }}">Lupa Password?</a>
+									<a href="/forgot-password" class="text-dark font-weight-bolder">Lupa Password ?</a>
 								</small>
 							</div>
 						</div>
@@ -100,7 +101,7 @@
 <script>
 	$(document).ready(function() {
 			// LOGOUT TOASTR
-			@if (Session::has('success'))
+			@if (Session::has('success_logout'))
 				(async function() {
 					const Toast = Swal.mixin({
 						toast: true,
@@ -110,13 +111,13 @@
 							popup: 'colored-toast'
 						},
 						showConfirmButton: false,
-						timer: 4000,
+						timer: 5000,
 						timerProgressBar: true
 					});
 
 					await Toast.fire({
 						icon: 'success',
-						title: "{{ Session::get('success') }}"
+						title: "{{ Session::get('success_logout') }}"
 					});
 				})();
 			@endif
@@ -135,13 +136,13 @@
 			@endif
 
 			// PASSWORD NOT MATCH
-			@if (Session::has('error_password'))
+			@if (Session::has('error_auth'))
 				Swal.fire({
 					icon: 'error',
-					title: '<strong>Login failed</strong>',
-					html: 'The email or password you entered is <b>incorrect</b>. Please <b>double-check</b> and <b>try again</b>.',
+					title: '<strong>Login Gagal</strong>',
+					html: 'Silahkan pastikan kembali <b>Email dan Password</b> yang anda masukkan adalah benar.',
 					showConfirmButton: false,
-					timer: 4000,
+					timer: 5000,
 					timerProgressBar: true
 				});
 			@endif

@@ -69,9 +69,8 @@
 						<div class="d-flex justify-content-between">
 							<div class="form-check">
 								<input type="checkbox" class="form-check-input" id="formCheckbox">
-								<label for="formCheckbox" class="form-check-label text-secondary">
-									<small class="text-bold">Lihat
-										Password</small>
+								<label class="form-check-label" for="formCheckbox">
+									Lihat Password
 								</label>
 							</div>
 						</div>
