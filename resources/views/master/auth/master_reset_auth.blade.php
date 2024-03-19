@@ -103,77 +103,8 @@
   <!-- End Navbar -->
 
   <main class="main-content  mt-0">
-    <section class="min-vh-100">
-      <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg mb-0"
-        style="background-image: url('{{ asset('master/dashboard/template/assets/img/curved-images/curved-11.jpg') }}');">
-        <span class="mask bg-gradient-dark opacity-6"></span>
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-6 text-center mx-auto mt-2">
-              <h1 class="text-white mb-2 mt-5">Kata Sandi Baru</h1>
-              <p class="text-lead text-white">Jika password lupa, silahkan masukkan email yang terdaftar untuk menerima
-                kode verifikasi dan membuat password baru.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row mt-lg-n10 mt-md-n11 mt-n10">
-          <div class="col-xl-7 col-lg-7 col-md-8 mx-auto">
-            <div class="card z-index-0">
-              <div class="text-center mt-3">
-                <h1>
-                  <h3><strong>Verifikasi Email Anda</strong></h3>
-                </h1>
-              </div>
-
-              <div class="card-body">
-
-                <form role="form text-left">
-                  @csrf
-
-                  <div class="mb-3">
-                    <label for="email" class="form-label">
-                      Alamat Email <strong class="text-danger">*</strong>
-                    </label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Email"
-                      aria-label="Email" aria-describedby="email-addon">
-
-                    @error('email')
-                    <small class="text-danger fst-italic">
-                      {{ $message }}
-                    </small>
-                    @enderror
-
-                    <p class="text-sm fst-italic mt-1">
-                      Silakan buat password baru dengan memasukkan email anda
-                      dan ikuti tautan yang disediakan pada kotak pesan
-                      Gmail.
-                    </p>
-
-                  </div>
-
-                  {{-- <div class="form-check form-check-info text-left">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                    <label class="form-check-label" for="flexCheckDefault">
-                      I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
-                    </label>
-                  </div> --}}
-
-                  <div class="text-center">
-                    <button type="submit" class="btn bg-gradient-dark w-100 my-3 mb-2">Kirim Kode Verifikasi</button>
-                  </div>
-                  <p class="text-sm text-center mt-3 mb-0">Belum mendapatkan kode? <a href="javascript:;"
-                      class="text-dark font-weight-bolder">Kirim ulang</a></p>
-                </form>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
+    @yield('content_reset')
     <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
     <footer class="footer py-5">
       <div class="container">
@@ -224,6 +155,10 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  @yield('auth_reset_section')
+
+  @yield('any_script')
 </body>
 
 </html>

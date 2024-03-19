@@ -98,6 +98,6 @@ class AuthController extends Controller
     {
         // dd('sudah logout');
         Auth::logout();
-        return redirect('/')->with('success_logout', 'Anda telah berhasil melakukan logout');
+        return redirect('/')->with('success_logout', 'Anda telah keluar dari halaman dashboard');
     }
 }

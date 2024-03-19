@@ -14,7 +14,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('master.dashboard.master_dashboard', [
+        return view('master.dashboard.partials_dashboard.dashboard', [
             'halaman' => 'Dashboard',
             "active" => "dashboard"
         ]);

@@ -55,7 +55,9 @@
 						</div>
 
 						<div class="text-center">
-							<button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Login</button>
+							<button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">
+								{{ __('Login') }}
+							</button>
 						</div>
 					</form>
 				</div>
@@ -106,7 +108,7 @@
 					const Toast = Swal.mixin({
 						toast: true,
 						position: 'top-right',
-						iconColor: '#FFC436',
+						iconColor: '#82d616',
 						customClass: {
 							popup: 'colored-toast'
 						},
@@ -129,9 +131,9 @@
 					title: '<strong>Registrasi Berhasil!</strong>',
 					html: 'Terimakasih telah melakukan registrasi akun, Silahkan <b>login</b> untuk melanjutkan.',
 					showConfirmButton: true,
-					confirmButtonColor: '#0174BE',
+					confirmButtonColor: '#17c1e8',
 					focusConfirm: false,
-					confirmButtonText: 'Oke!'
+					confirmButtonText: 'Konfirmasi'
 				});
 			@endif
 
@@ -141,9 +143,10 @@
 					icon: 'error',
 					title: '<strong>Login Gagal</strong>',
 					html: 'Silahkan pastikan kembali <b>Email dan Password</b> yang anda masukkan adalah benar.',
-					showConfirmButton: false,
-					timer: 5000,
-					timerProgressBar: true
+					showConfirmButton: true,
+					confirmButtonColor: '#ea0606',
+					focusConfirm: false,
+					confirmButtonText: 'Konfirmasi'
 				});
 			@endif
 
@@ -151,12 +154,12 @@
 			@if (Session::has('status_password_reset'))
 				Swal.fire({
 					icon: 'success',
-					title: '<strong>New Password Updated</strong>',
-					html: 'Your password has been <b>successfully updated</b>. Please use your new password to log in to your account.',
+					title: '<strong>Password Baru!</strong>',
+					html: 'Password anda <b>berhasil diperbarui</b>. Silahkan gunakan password tersebut untuk login.',
 					showConfirmButton: true,
-					confirmButtonColor: '#0174BE',
+					confirmButtonColor: '#17c1e8',
 					focusConfirm: false,
-					confirmButtonText: 'Yes, confirm!'
+					confirmButtonText: 'Konfirmasi'
 				});
 			@endif
 		});	

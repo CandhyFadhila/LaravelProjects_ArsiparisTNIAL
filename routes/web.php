@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthPassword_Controller;
+use App\Http\Controllers\Controller_Demo;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-// Route::resource('/', Controller_Demo::class);
+Route::resource('/demo', Controller_Demo::class);
 
 // TODO | AUTH SECTION
 Route::controller(AuthController::class)->group(function () {
@@ -32,7 +33,6 @@ Route::controller(AuthController::class)->group(function () {
 	Route::get('/signup', 'signup');
 	Route::post('/registration', 'signup_code')->name('signup.code');
 	/* END REGISTRATION */
-
 	
 	// TODO | LOGOUT
 	Route::get('/logout', 'logout');
@@ -43,9 +43,15 @@ Route::controller(AuthPassword_Controller::class,)->group(function (){
 	/* FORGOT PASSWORD */
 	Route::get('/forgot-password', 'index');
 	/* ENDFORGOT PASSWORD */
+
+	Route::post('/forgot-password', 'resetPassword')->name('password.email');
+
+	Route::get('/reset-password/{token}', 'resetPasswordIndex')->name('password.reset');
+
+	Route::post('/reset-password', 'resetPasswordForm')->name('password.update');
 });
 
 // Route::get('check', [DashboardController::class,'check']);
-Route::get('dashboard', [DashboardController::class,'index']);
+Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
 
 // Route::resource('/ket', KeteranganSuratController::class);

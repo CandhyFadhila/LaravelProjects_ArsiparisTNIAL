@@ -35,30 +35,37 @@
                     </thead>
 
                     <tbody>
-                        <?php $i = 0 ?>
-                        @foreach ($surat as $item)
-                        <tr role="row">
-                            <td class="text-center">{{ ++$i }}</td>
-                            <td>{{ $item->nama_surat }}</td>
-                            <td>{{ $item->no_surat }}</td>
-                            <td>@DateIndo({{ $item->created_at }})</td>
-                            <td class="text-center">
-                                <a href="{{ url('/admin/barang/' . $item->id . '/detail') }}"
-                                    class="btn btn-sm btn-secondary">Detail</a>
 
-                                <a href="{{ url('/admin/barang/' . $item->id . '/edit') }}"
-                                    class="btn btn-sm btn-warning">Edit</a>
-                                {{-- <a href="#" class="btn btn-sm btn-danger">Delete</a> --}}
-                                <form action="{{ url('/admin/barang/' . $item->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" name="save" class="btn btn-danger btn-sm show_confirm_delete">
-                                        Delete
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
+                        @if (count($surat) > 0)
+                            @foreach ($surat as $item)
+                            <tr role="row">
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td>{{ $item->nama_surat }}</td>
+                                <td>{{ $item->no_surat }}</td>
+                                <td>@DateIndo({{ $item->created_at }})</td>
+                                <td class="text-center">
+                                    <a href="{{ url('/admin/barang/' . $item->id . '-detail') }}"
+                                        class="btn btn-sm btn-secondary">Detail</a>
+
+                                    <a href="{{ url('/admin/barang/' . $item->id . '-edit') }}"
+                                        class="btn btn-sm btn-warning">Edit</a>
+                                    {{-- <a href="#" class="btn btn-sm btn-danger">Delete</a> --}}
+                                    <form action="{{ url('/admin/barang/' . $item->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" name="save" class="btn btn-danger btn-sm show_confirm_delete">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        @else
+                            <tr>
+                                <td class="text-center" colspan="5">No Data Found!</td>
+                            </tr>
+                        @endif
 
                     </tbody>
                 </table>
